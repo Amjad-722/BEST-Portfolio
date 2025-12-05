@@ -35,6 +35,7 @@ export const technologies: Technology[] = [
 ];
 
 export const techStack: string[] = [
+    'svelte',
 	'SvelteKit', 
 	'TypeScript', 
 	'Tailwind CSS', 
