@@ -1,6 +1,9 @@
 // Type definitions for the portfolio
 
-import type { Component } from 'svelte';
+import type { ComponentType, SvelteComponent } from 'svelte';
+
+// Generic type for Lucide icons and similar component types
+type IconComponent = ComponentType<SvelteComponent>;
 
 export interface NavLink {
 	href: string;
@@ -8,7 +11,7 @@ export interface NavLink {
 }
 
 export interface Skill {
-	icon: Component;
+	icon: IconComponent;
 	title: string;
 	description: string;
 }
@@ -36,7 +39,7 @@ export interface OtherProject {
 }
 
 export interface ContactInfo {
-	icon: Component;
+	icon: IconComponent;
 	label: string;
 	value: string;
 	href: string | null;
@@ -44,6 +47,6 @@ export interface ContactInfo {
 
 export interface SocialLink {
 	href: string;
-	icon: Component;
+	icon: IconComponent;
 	label: string;
 }
