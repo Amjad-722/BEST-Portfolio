@@ -10,7 +10,7 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const contactInfo: ContactInfo[] = [
-	{ icon: Mail, label: 'Email', value: 'hello@example.com', href: 'mailto:hello@example.com' },
-	{ icon: MapPin, label: 'Location', value: 'San Francisco, CA', href: null },
-	{ icon: Phone, label: 'Phone', value: '+1 (555) 123-4567', href: 'tel:+15551234567' }
+	{ icon: Mail, label: 'Email', value: 'aliamjad722ee@gmail.com', href: 'mailto:aliamjad722ee@gmail.com' },
+	{ icon: MapPin, label: 'Location', value: 'Gilgit Baltistan pakistan', href: null },
+	{ icon: Phone, label: 'Phone', value: '0000000000000', href: 'tel:+15551234567' }
 ];

@@ -38,7 +38,6 @@ export const techStack: string[] = [
     'svelte',
 	'SvelteKit', 
 	'TypeScript', 
-	'Tailwind CSS', 
-	'Node.js', 
-	'PostgreSQL'
+	'Tailwind CSS'
+	
 ];
