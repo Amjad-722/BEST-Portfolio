@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { ArrowDown, Sparkles } from 'lucide-svelte';
+	import { Button, TechPill } from '$lib/components/ui';
+	import { techStack } from '$lib/data';
 </script>
 
 <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
@@ -44,29 +46,19 @@
 
 		<!-- CTA Buttons -->
 		<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-			<a
-				href="#projects"
-				class="group px-8 py-4 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] text-white font-semibold text-lg
-					   hover:shadow-lg hover:shadow-[var(--color-primary)]/30 transition-all duration-300 hover:scale-105 flex items-center gap-2"
-			>
+			<Button href="#projects" size="lg" class="group">
 				View My Work
 				<ArrowDown class="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
-			</a>
-			<a
-				href="#contact"
-				class="px-8 py-4 rounded-full border-2 border-[var(--color-primary)] text-[var(--color-text-primary)] font-semibold text-lg
-					   hover:bg-[var(--color-primary)]/10 transition-all duration-300"
-			>
+			</Button>
+			<Button href="#contact" variant="secondary" size="lg">
 				Get In Touch
-			</a>
+			</Button>
 		</div>
 
 		<!-- Tech Stack Pills -->
 		<div class="flex flex-wrap items-center justify-center gap-3">
-			{#each ['SvelteKit', 'TypeScript', 'Tailwind CSS', 'Node.js', 'PostgreSQL'] as tech}
-				<span class="px-4 py-2 rounded-full bg-[var(--color-bg-card)]/60 border border-[var(--color-border)] text-sm text-[var(--color-text-secondary)] backdrop-blur-sm hover:border-[var(--color-primary)]/50 transition-colors duration-300">
-					{tech}
-				</span>
+			{#each techStack as tech}
+				<TechPill {tech} />
 			{/each}
 		</div>
 	</div>

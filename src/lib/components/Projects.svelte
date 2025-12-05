@@ -1,55 +1,18 @@
 <script lang="ts">
 	import { ExternalLink, Github, Folder } from 'lucide-svelte';
-
-	const featuredProjects = [
-		{
-			title: 'E-Commerce Platform',
-			description: 'A full-stack e-commerce solution built with SvelteKit, featuring real-time inventory, Stripe payments, and an admin dashboard.',
-			image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop',
-			tags: ['SvelteKit', 'TypeScript', 'Stripe', 'PostgreSQL'],
-			github: 'https://github.com',
-			live: 'https://example.com'
-		},
-		{
-			title: 'Task Management App',
-			description: 'A beautiful Kanban-style task manager with drag-and-drop, real-time collaboration, and dark mode support.',
-			image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop',
-			tags: ['Svelte', 'Firebase', 'Tailwind CSS', 'DnD Kit'],
-			github: 'https://github.com',
-			live: 'https://example.com'
-		},
-		{
-			title: 'Analytics Dashboard',
-			description: 'Interactive data visualization dashboard with real-time charts, filters, and export functionality.',
-			image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
-			tags: ['SvelteKit', 'D3.js', 'Node.js', 'MongoDB'],
-			github: 'https://github.com',
-			live: 'https://example.com'
-		}
-	];
-
-	const otherProjects = [
-		{ title: 'Weather App', description: 'Beautiful weather app with location-based forecasts', tags: ['Svelte', 'OpenWeather API'] },
-		{ title: 'Markdown Editor', description: 'Live markdown editor with syntax highlighting', tags: ['SvelteKit', 'Prism.js'] },
-		{ title: 'Portfolio Template', description: 'Customizable portfolio template for developers', tags: ['Svelte', 'Tailwind CSS'] },
-		{ title: 'Chat Application', description: 'Real-time chat with WebSocket support', tags: ['SvelteKit', 'Socket.io'] },
-		{ title: 'Recipe Finder', description: 'Search and save your favorite recipes', tags: ['Svelte', 'Spoonacular API'] },
-		{ title: 'Expense Tracker', description: 'Track and visualize your expenses', tags: ['SvelteKit', 'Chart.js'] }
-	];
+	import { SectionHeader, Card } from '$lib/components/ui';
+	import { featuredProjects, otherProjects } from '$lib/data';
 </script>
 
 <section id="projects" class="py-24 relative">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<!-- Section Header -->
-		<div class="text-center mb-16">
-			<span class="text-[var(--color-accent)] text-sm font-semibold uppercase tracking-widest">My Work</span>
-			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mt-3 mb-6">
-				Featured <span class="text-gradient">Projects</span>
-			</h2>
-			<p class="text-[var(--color-text-secondary)] max-w-2xl mx-auto text-lg leading-relaxed">
-				Here are some of my recent projects that showcase my skills in building modern web applications.
-			</p>
-		</div>
+		<SectionHeader 
+			subtitle="My Work"
+			title="Featured Projects"
+			highlightedWord="Projects"
+			description="Here are some of my recent projects that showcase my skills in building modern web applications."
+		/>
 
 		<!-- Featured Projects -->
 		<div class="space-y-12 mb-20">
@@ -113,11 +76,11 @@
 			</h3>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{#each otherProjects as project}
-					<div class="glass-card p-6 group hover:scale-105 transition-all duration-300">
+					<Card class="group">
 						<div class="flex items-center justify-between mb-4">
 							<Folder class="w-10 h-10 text-[var(--color-accent)] group-hover:scale-110 transition-transform duration-300" />
 							<div class="flex gap-3">
-								<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors duration-300">
+								<a href="https://github.com/Amjad-722" target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors duration-300">
 									<Github class="w-5 h-5" />
 								</a>
 								<a href="https://example.com" target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors duration-300">
@@ -136,7 +99,7 @@
 								<span class="text-xs text-[var(--color-text-secondary)]">{tag}</span>
 							{/each}
 						</div>
-					</div>
+					</Card>
 				{/each}
 			</div>
 		</div>

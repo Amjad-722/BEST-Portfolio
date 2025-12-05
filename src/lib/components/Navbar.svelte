@@ -1,14 +1,9 @@
 <script lang="ts">
 	import { Menu, X, Code2 } from 'lucide-svelte';
+	import { Button } from '$lib/components/ui';
+	import { navLinks } from '$lib/data';
 
 	let isOpen = $state(false);
-
-	const navLinks = [
-		{ href: '#hero', label: 'Home' },
-		{ href: '#about', label: 'About' },
-		{ href: '#projects', label: 'Projects' },
-		{ href: '#contact', label: 'Contact' }
-	];
 
 	function toggleMenu() {
 		isOpen = !isOpen;
@@ -42,13 +37,9 @@
 						{link.label}
 					</a>
 				{/each}
-				<a
-					href="#contact"
-					class="px-5 py-2 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] text-white font-semibold
-						   hover:shadow-lg hover:shadow-[var(--color-primary)]/30 transition-all duration-300 hover:scale-105"
-				>
+				<Button href="#contact" size="sm">
 					Hire Me
-				</a>
+				</Button>
 			</div>
 
 			<!-- Mobile Menu Button -->

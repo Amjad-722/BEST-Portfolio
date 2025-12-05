@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { Github, Linkedin, Twitter, Mail, Heart, Code2 } from 'lucide-svelte';
+	import { Heart, Code2 } from 'lucide-svelte';
+	import { SocialIcon } from '$lib/components/ui';
+	import { socialLinks, navLinks } from '$lib/data';
 
 	const currentYear = new Date().getFullYear();
-
-	const socialLinks = [
-		{ href: 'https://github.com', icon: Github, label: 'GitHub' },
-		{ href: 'https://linkedin.com', icon: Linkedin, label: 'LinkedIn' },
-		{ href: 'https://twitter.com', icon: Twitter, label: 'Twitter' },
-		{ href: 'mailto:hello@example.com', icon: Mail, label: 'Email' }
-	];
+	
+	// Filter nav links for footer (exclude hero)
+	const footerLinks = navLinks.filter(link => link.href !== '#hero');
 </script>
 
 <footer class="bg-[var(--color-bg-dark)] border-t border-[var(--color-border)]">
@@ -31,9 +29,11 @@
 			<div class="space-y-4">
 				<h3 class="text-lg font-semibold text-[var(--color-text-primary)]">Quick Links</h3>
 				<nav class="flex flex-col gap-2">
-					<a href="#about" class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors duration-300">About</a>
-					<a href="#projects" class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors duration-300">Projects</a>
-					<a href="#contact" class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors duration-300">Contact</a>
+					{#each footerLinks as link}
+						<a href={link.href} class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors duration-300">
+							{link.label}
+						</a>
+					{/each}
 				</nav>
 			</div>
 
@@ -41,16 +41,8 @@
 			<div class="space-y-4">
 				<h3 class="text-lg font-semibold text-[var(--color-text-primary)]">Connect</h3>
 				<div class="flex gap-4">
-					{#each socialLinks as social}
-						<a
-							href={social.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="p-3 rounded-lg bg-[var(--color-bg-card)] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-card-hover)] transition-all duration-300 hover:scale-110"
-							aria-label={social.label}
-						>
-							<social.icon class="w-5 h-5" />
-						</a>
+					{#each socialLinks as link}
+						<SocialIcon {link} />
 					{/each}
 				</div>
 			</div>

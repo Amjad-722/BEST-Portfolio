@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Mail, MapPin, Phone, Send, Loader2 } from 'lucide-svelte';
+	import { Send, Loader2 } from 'lucide-svelte';
+	import { SectionHeader, Card, FormInput, Button } from '$lib/components/ui';
+	import { contactInfo } from '$lib/data';
 
 	let name = $state('');
 	let email = $state('');
@@ -25,12 +27,6 @@
 			submitted = false;
 		}, 5000);
 	}
-
-	const contactInfo = [
-		{ icon: Mail, label: 'Email', value: 'hello@example.com', href: 'mailto:hello@example.com' },
-		{ icon: MapPin, label: 'Location', value: 'San Francisco, CA', href: null },
-		{ icon: Phone, label: 'Phone', value: '+1 (555) 123-4567', href: 'tel:+15551234567' }
-	];
 </script>
 
 <section id="contact" class="py-24 relative">
@@ -40,20 +36,17 @@
 
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 		<!-- Section Header -->
-		<div class="text-center mb-16">
-			<span class="text-[var(--color-accent)] text-sm font-semibold uppercase tracking-widest">Get In Touch</span>
-			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mt-3 mb-6">
-				Let's <span class="text-gradient">Work Together</span>
-			</h2>
-			<p class="text-[var(--color-text-secondary)] max-w-2xl mx-auto text-lg leading-relaxed">
-				Have a project in mind? I'd love to hear about it. Send me a message and let's create something amazing together.
-			</p>
-		</div>
+		<SectionHeader 
+			subtitle="Get In Touch"
+			title="Let's Work Together"
+			highlightedWord="Work Together"
+			description="Have a project in mind? I'd love to hear about it. Send me a message and let's create something amazing together."
+		/>
 
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 			<!-- Contact Info -->
 			<div class="space-y-8">
-				<div class="glass-card p-8">
+				<Card padding="lg" hover={false}>
 					<h3 class="text-2xl font-bold text-[var(--color-text-primary)] mb-6">Contact Information</h3>
 					<div class="space-y-6">
 						{#each contactInfo as info}
@@ -74,10 +67,10 @@
 							</div>
 						{/each}
 					</div>
-				</div>
+				</Card>
 
 				<!-- Availability Card -->
-				<div class="glass-card p-8">
+				<Card padding="lg" hover={false}>
 					<div class="flex items-center gap-3 mb-4">
 						<div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
 						<span class="text-[var(--color-text-primary)] font-semibold">Currently Available</span>
@@ -86,11 +79,11 @@
 						I'm currently open to new freelance projects and full-time opportunities. 
 						Let's discuss how I can help bring your ideas to life.
 					</p>
-				</div>
+				</Card>
 			</div>
 
 			<!-- Contact Form -->
-			<div class="glass-card p-8">
+			<Card padding="lg" hover={false}>
 				{#if submitted}
 					<div class="text-center py-12">
 						<div class="w-16 h-16 mx-auto mb-6 rounded-full bg-green-500/20 flex items-center justify-center">
@@ -103,52 +96,37 @@
 					</div>
 				{:else}
 					<form onsubmit={handleSubmit} class="space-y-6">
-						<div>
-							<label for="name" class="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Your Name</label>
-							<input
-								type="text"
-								id="name"
-								bind:value={name}
-								required
-								class="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-dark)] border border-[var(--color-border)] text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]/50
-									   focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all duration-300"
-								placeholder="John Doe"
-							/>
-						</div>
+						<FormInput 
+							id="name"
+							label="Your Name"
+							placeholder="John Doe"
+							required
+							bind:value={name}
+						/>
 
-						<div>
-							<label for="email" class="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Email Address</label>
-							<input
-								type="email"
-								id="email"
-								bind:value={email}
-								required
-								class="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-dark)] border border-[var(--color-border)] text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]/50
-									   focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all duration-300"
-								placeholder="john@example.com"
-							/>
-						</div>
+						<FormInput 
+							id="email"
+							label="Email Address"
+							type="email"
+							placeholder="john@example.com"
+							required
+							bind:value={email}
+						/>
 
-						<div>
-							<label for="message" class="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Your Message</label>
-							<textarea
-								id="message"
-								bind:value={message}
-								required
-								rows="5"
-								class="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-dark)] border border-[var(--color-border)] text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]/50
-									   focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 outline-none transition-all duration-300 resize-none"
-								placeholder="Tell me about your project..."
-							></textarea>
-						</div>
+						<FormInput 
+							id="message"
+							label="Your Message"
+							placeholder="Tell me about your project..."
+							required
+							rows={5}
+							bind:value={message}
+						/>
 
-						<button
-							type="submit"
+						<Button 
+							type="submit" 
 							disabled={isSubmitting}
-							class="w-full py-4 rounded-lg bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] text-white font-semibold text-lg
-								   hover:shadow-lg hover:shadow-[var(--color-primary)]/30 transition-all duration-300 hover:scale-[1.02]
-								   disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100
-								   flex items-center justify-center gap-2"
+							class="w-full"
+							size="lg"
 						>
 							{#if isSubmitting}
 								<Loader2 class="w-5 h-5 animate-spin" />
@@ -157,10 +135,10 @@
 								<Send class="w-5 h-5" />
 								<span>Send Message</span>
 							{/if}
-						</button>
+						</Button>
 					</form>
 				{/if}
-			</div>
+			</Card>
 		</div>
 	</div>
 </section>
